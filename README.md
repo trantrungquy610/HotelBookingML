@@ -10,8 +10,8 @@ Dự án BTL môn Học máy: dự đoán booking khách sạn có bị hủy ha
 ## 2. Cài đặt
 
 ```bash
-git clone <URL_REPOSITORY>
-cd <TEN_REPOSITORY>
+git clone https://github.com/trantrungquy610/HotelBookingML.git
+cd HotelBookingML
 
 py -3.11 -m venv .venv
 # Windows PowerShell:
