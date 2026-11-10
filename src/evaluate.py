@@ -16,10 +16,19 @@ from sklearn.metrics import (
 from sklearn.model_selection import TimeSeriesSplit
 
 
+# Schema agreed at M1 (docs/decisions.md, section 6).
 RESULT_COLUMNS = [
     "model_name",
+    "experiment",
+    "feature_set",
     "split",
+    "train_hotel",
+    "eval_hotel",
+    "eval_set",
+    "n_eval",
+    "eval_cancel_rate",
     "average_precision",
+    "average_precision_std",
     "f1",
     "roc_auc",
     "precision",
@@ -28,10 +37,13 @@ RESULT_COLUMNS = [
     "cost_scenario",
     "C_FN",
     "C_FP",
-    "FN",
+    "TN",
     "FP",
+    "FN",
+    "TP",
     "expected_cost",
     "cost_per_booking",
+    "params",
 ]
 
 
@@ -40,9 +52,11 @@ def evaluate_classification(
     y_pred,
     y_score=None,
 ) -> dict[str, float]:
-    """Trả về PR-AUC, F1, ROC-AUC, precision và recall.
+    """Trả về PR-AUC, F1, ROC-AUC, precision, recall và TN, FP, FN, TP.
 
     y_score là xác suất/điểm của lớp dương; cần có để tính PR-AUC và ROC-AUC.
+    Tên key trùng với tên cột trong RESULT_COLUMNS để ghi thẳng bằng
+    append_result.
     """
     if y_score is None:
         raise ValueError(
@@ -56,10 +70,10 @@ def evaluate_classification(
         "roc_auc": float(roc_auc_score(y_true, y_score)),
         "precision": float(precision_score(y_true, y_pred, zero_division=0)),
         "recall": float(recall_score(y_true, y_pred, zero_division=0)),
-        "tn": float(tn),
-        "fp": float(fp),
-        "fn": float(fn),
-        "tp": float(tp),
+        "TN": float(tn),
+        "FP": float(fp),
+        "FN": float(fn),
+        "TP": float(tp),
     }
 
 
