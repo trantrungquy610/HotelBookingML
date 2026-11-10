@@ -128,8 +128,9 @@ Bộ này **bỏ cả `reservation_status` và `reservation_status_date`**, tron
 
 ### 5.1. Metric [xác nhận: TV3]
 
-- **Metric chính: PR-AUC**, tính bằng `average_precision_score`. Luôn ghi kèm mốc so sánh, bằng tỉ lệ hủy của tập đánh giá.
-- **F1 lớp hủy:** báo cáo ở ngưỡng 0,5 và ở ngưỡng theo chi phí (TN3).
+- **Metric chính: PR-AUC và F1 lớp hủy** (giống kế hoạch, `docs/function_contracts.md` và `docs/metric_and_cost.md`).
+  - PR-AUC tính bằng `average_precision_score`. Luôn ghi kèm mốc so sánh, bằng tỉ lệ hủy của tập đánh giá.
+  - F1 lớp hủy báo cáo ở ngưỡng 0,5 và ở ngưỡng theo chi phí (TN3).
 - **Chọn mô hình theo PR-AUC.** Nếu PR-AUC và F1 chọn ra hai mô hình khác nhau thì theo PR-AUC, vì PR-AUC không phụ thuộc ngưỡng.
 - **Metric phụ:**
   - ROC-AUC, dùng khi so sánh các tập có tỉ lệ hủy khác nhau.
