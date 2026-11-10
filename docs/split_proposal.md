@@ -81,26 +81,3 @@ Nếu metric dao động mạnh hoặc nhóm cần đánh giá độ ổn địn
 rolling-origin backtest trên các cửa sổ thời gian. Đây là mở rộng sau phương
 án B, không thay đổi test temporal cố định dùng để báo cáo cuối cùng.
 
-## 6. Quy trình tạo nhánh và bàn giao
-
-Từ `main` đã cập nhật:
-
-```powershell
-git switch main
-git pull --ff-only origin main
-git switch -c docs/time-split-metrics-cost
-```
-
-Sau khi chỉnh sửa và kiểm tra:
-
-```powershell
-git status
-git diff --check
-git add docs/split_proposal.md docs/metric_and_cost.md
-git commit -m "docs: propose temporal split and cost metrics"
-git push -u origin docs/time-split-metrics-cost
-```
-
-Mở pull request từ nhánh này vào `main`, yêu cầu review trước khi merge.
-Nếu nhánh đã tồn tại trên remote, dùng `git switch docs/time-split-metrics-cost`
-thay cho lệnh tạo nhánh.
