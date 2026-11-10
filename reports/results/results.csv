@@ -1,1 +1,1 @@
-model_name,split,average_precision,f1,roc_auc,precision,recall,threshold,cost_scenario,C_FN,C_FP,FN,FP,expected_cost,cost_per_booking
+model_name,experiment,feature_set,split,train_hotel,eval_hotel,eval_set,n_eval,eval_cancel_rate,average_precision,average_precision_std,f1,roc_auc,precision,recall,threshold,cost_scenario,C_FN,C_FP,TN,FP,FN,TP,expected_cost,cost_per_booking,params
