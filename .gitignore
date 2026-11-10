@@ -23,6 +23,7 @@ reports/figures/*
 !reports/figures/.gitkeep
 reports/results/*
 !reports/results/.gitkeep
+!reports/results/results.csv
 
 # OS / IDE
 .DS_Store
