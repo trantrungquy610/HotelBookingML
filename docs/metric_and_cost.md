@@ -22,8 +22,12 @@ ghi rõ đây là giả định, không phải giá trị tài chính đã xác 
 
 - **PR-AUC / Average Precision**: đo chất lượng xếp hạng lớp hủy trong bối
   cảnh mất cân bằng; không phụ thuộc một threshold duy nhất.
-- **F1 lớp hủy**: metric tại threshold được chọn trên validation, cân bằng
-  precision và recall khi chưa có chi phí đáng tin cậy.
+- **F1 lớp hủy**: báo cáo ở threshold mặc định 0.5 và ở threshold chọn theo
+  chi phí trên validation; cân bằng precision và recall khi chưa có chi phí
+  đáng tin cậy.
+
+Khi PR-AUC và F1 chọn ra hai mô hình khác nhau, chọn theo PR-AUC vì metric này
+không phụ thuộc threshold.
 
 ### Metric phụ
 
@@ -35,7 +39,8 @@ ghi rõ đây là giả định, không phải giá trị tài chính đã xác 
   làm metric duy nhất khi lớp hủy mất cân bằng.
 
 `src.evaluate.evaluate_classification` phải trả về ít nhất:
-`average_precision`, `f1`, `roc_auc`, `precision`, `recall`. Khi `y_score` không
+`average_precision`, `f1`, `roc_auc`, `precision`, `recall` và số đếm `TN`,
+`FP`, `FN`, `TP` (cùng tên cột với `results.csv`). Khi `y_score` không
 có, PR-AUC và ROC-AUC phải được báo là không tính được theo contract thay vì
 thay bằng giá trị giả.
 
@@ -60,8 +65,9 @@ Ba kịch bản sensitivity đề xuất:
 | Ưu tiên lấp phòng | 2 | 1 | Phòng trống đắt hơn rủi ro overbooking |
 | Thận trọng overbooking | 1 | 2 | Overbooking đắt hơn phòng trống |
 
-Không chọn kịch bản tốt nhất sau khi xem test. Chọn trước một kịch bản chính
-với nhóm, dùng các kịch bản còn lại để sensitivity analysis.
+Kịch bản chính (chốt tại M1): **Thận trọng overbooking** (`C_FN = 1`,
+`C_FP = 2`). Hai kịch bản còn lại dùng cho sensitivity analysis. Không đổi
+kịch bản chính sau khi xem test.
 
 ## 4. Chọn threshold đúng quy trình
 
@@ -79,10 +85,19 @@ nhãn sau threshold. Threshold không được tối ưu trên test.
 
 ## 5. Cách báo cáo kết quả
 
-Mỗi dòng kết quả nên có: tên mô hình, split (`temporal` hoặc `random_baseline`),
-`average_precision`, `f1`, `roc_auc`, `precision`, `recall`, threshold,
-kịch bản chi phí, `C_FN`, `C_FP`, `FN`, `FP`, `expected_cost` và
-`cost_per_booking`.
+Mỗi dòng kết quả theo `RESULT_COLUMNS` trong `src/evaluate.py` (chốt tại M1,
+`docs/decisions.md` Mục 6):
+
+- **Định danh:** `model_name`, `experiment` (`main`, `TN1`, `TN2`, `TN3`),
+  `feature_set` (`clean`, `conventional`), `split` (`temporal` hoặc
+  `random_baseline`), `params` (hyperparameter dạng JSON).
+- **Tập đánh giá:** `train_hotel`, `eval_hotel` (`all`, `City Hotel`,
+  `Resort Hotel`), `eval_set` (`cv`, `validation`, `test`), `n_eval`,
+  `eval_cancel_rate` (tỷ lệ hủy của tập đánh giá, cũng là mốc của PR-AUC).
+- **Metric:** `average_precision` (với dòng `cv` là trung bình qua các fold),
+  `average_precision_std`, `f1`, `roc_auc`, `precision`, `recall`.
+- **Threshold và chi phí:** `threshold`, `cost_scenario`, `C_FN`, `C_FP`,
+  `TN`, `FP`, `FN`, `TP`, `expected_cost`, `cost_per_booking`.
 
 Kết luận chính dựa trên temporal test. Random baseline chỉ dùng làm mốc tham
 chiếu; nếu random tốt hơn nhiều temporal, cần nêu khả năng drift hoặc leakage
