@@ -17,10 +17,12 @@ data/processed/*
 !data/processed/.gitkeep
 models/*
 !models/.gitkeep
+!models/gradient_boosting_best_params.json
 
 # Generated reports
 reports/figures/*
 !reports/figures/.gitkeep
+!reports/figures/gradient_boosting_*.png
 reports/results/*
 !reports/results/.gitkeep
 !reports/results/results.csv

@@ -69,6 +69,8 @@ Sau khi hoàn thành các bước cài đặt môi trường và chuẩn bị d�
 - Kết quả đánh giá mô hình được ghi vào `reports/results/results.csv`.
 - Notebook `03_baseline.ipynb` tạo kết quả ban đầu cho Dummy Classifier và Logistic Regression, làm cơ sở để phát triển và so sánh với các mô hình tiếp theo.
 
+Notebook `04_gradient_boosting.ipynb` tối ưu LightGBM (Gradient Boosting), lưu siêu tham số tốt nhất tại `models/gradient_boosting_best_params.json`, cập nhật CV và validation vào `reports/results/results.csv`, đồng thời tạo confusion matrix và feature importance trong `reports/figures/`.
+
 ## 6. Cấu trúc
 
 ```text
