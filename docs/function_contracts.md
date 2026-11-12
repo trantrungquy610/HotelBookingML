@@ -18,6 +18,12 @@ Metric chính: PR-AUC (`average_precision`) và F1 lớp hủy. Metric phụ: RO
 
 ## T07 – `src/preprocess.py` (TV1)
 ```python
+clean_data(
+    df: pd.DataFrame,
+    *,
+    copy=True,
+) -> pd.DataFrame
+
 build_preprocessor(
     X,
     *,
@@ -43,8 +49,13 @@ temporal_split(df, *, train_end, valid_end, date_col)
     -> (train_df, valid_df, test_df)
 
 random_split(
-    df, *, target_col="is_canceled", test_size=0.2,
-    valid_size=0.2, random_state=42, stratify=True
+    df: pd.DataFrame,
+    *,
+    target_col: str = "is_canceled",
+    test_size: float = 0.086,
+    valid_size: float = 0.255,
+    random_state: int = 42,
+    stratify: bool = True,
 ) -> (train_df, valid_df, test_df)
 
 hotel_split(

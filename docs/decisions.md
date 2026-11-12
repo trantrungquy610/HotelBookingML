@@ -15,7 +15,7 @@ load_raw() -> clean_data() -> add_features() -> chọn cột theo bộ -> chia d
 - `clean_data` và `add_features` chỉ biến đổi từng dòng theo quy tắc cố định, không học gì từ dữ liệu. Vì vậy chạy hai bước này trước khi chia không gây leakage.
 - Mọi bước học từ dữ liệu (one-hot, gom mức hiếm, chuẩn hóa) phải nằm trong Pipeline và chỉ fit trên train.
 
-## 2. Làm sạch dữ liệu: `clean_data(df, *, copy=True) -> pd.DataFrame` [xác nhận: TV1]
+## 2. Làm sạch dữ liệu: `clean_data(df, *, copy=True) -> pd.DataFrame` [đã xác nhận: TV1]
 
 Đây là hàm mới thêm vào contract, đặt trong `src/preprocess.py`.
 
@@ -35,7 +35,7 @@ load_raw() -> clean_data() -> add_features() -> chọn cột theo bộ -> chia d
 
 ## 3. Bộ cột
 
-### 3.1. Bộ cột sạch: 22 cột [xác nhận: TV1]
+### 3.1. Bộ cột sạch: 22 cột [đã xác nhận: TV1]
 
 Bộ này dùng cho kết luận chính, TN1, TN2 và TN3.
 
