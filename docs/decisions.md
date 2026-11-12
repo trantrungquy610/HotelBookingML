@@ -1,6 +1,6 @@
 # Quyết định M1
 
-> **Trạng thái:** bản đề xuất ngày 10/11/2026, chờ TV1 và TV3 xác nhận. Mục có nhãn **[xác nhận: TVx]** đụng đến phần việc của thành viên đó.
+> **Trạng thái:** đã chốt ngày 10/11/2026 (PR #3, #4). Mục 3.3 cập nhật danh sách đặc trưng sau T08.
 >
 > **Căn cứ:** `notebooks/01_eda.ipynb` (T03), `docs/feature_decisions.md` (T04), `docs/split_proposal.md` và `docs/metric_and_cost.md` (T05).
 > Nếu các tài liệu trên mâu thuẫn với file này thì **làm theo file này**.
@@ -78,8 +78,9 @@ Bộ này **bỏ cả `reservation_status` và `reservation_status_date`**, tron
 
 ### 3.3. Đặc trưng tạo thêm (T08, TV2)
 
-- Chỉ tạo đặc trưng từ các cột có trong bộ tương ứng. Ví dụ, `country_group` chỉ dùng cho bộ thông thường.
-- Ứng viên lấy từ EDA Mục 11. Danh sách cuối cùng sẽ chốt trong PR của T08.
+- Chỉ tạo đặc trưng từ các cột có trong bộ tương ứng.
+- **Đã chốt (T08): chỉ thêm `arrival_weekday`** (thứ trong tuần của ngày đến, biến phân loại) cho cả bộ sạch và bộ thông thường. Bộ sạch dùng cho mô hình gồm 22 cột gốc và `arrival_weekday`.
+- Các ứng viên còn lại (`prev_cancel_ratio`, `has_history`, `has_agent`, `has_company`, `country_group`, ...) không thêm. Bằng chứng ở `notebooks/02_features.ipynb` (chỉ dùng tập train).
 
 ### 3.4. Mã hóa (T07, TV1)
 
