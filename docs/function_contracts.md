@@ -67,8 +67,11 @@ Các mốc thời gian, tỷ lệ và cột ngày thực tế sẽ theo quyết 
 ## T08 – `src/features.py` (TV2)
 ```python
 add_features(df, *, copy=True) -> pd.DataFrame
+
+ENGINEERED_CATEGORICAL_FEATURES: list[str]  # ["arrival_weekday"]
+ENGINEERED_NUMERIC_FEATURES: list[str]      # []
 ```
-Giữ index, không mutate input khi `copy=True`. Chỉ thêm feature có lý do từ EDA; không dùng thông tin phát sinh sau thời điểm booking.
+Gọi sau `clean_data` (cần cột `arrival_date`). Giữ index, không mutate input khi `copy=True`. Chỉ thêm feature có lý do từ EDA; không dùng thông tin phát sinh sau thời điểm booking. Nối hai hằng số trên vào danh sách cột của bộ sạch và bộ thông thường; lý do chọn đặc trưng ở `notebooks/02_features.ipynb`.
 
 ## Quy ước chung
 - `RANDOM_STATE = 42` lấy từ `src.config`, không khai báo seed riêng.
