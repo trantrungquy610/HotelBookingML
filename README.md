@@ -45,7 +45,26 @@ python -c "from src.data import load_raw; df = load_raw(); print(df.shape); prin
 
 Mục tiêu là `is_canceled` (0: không hủy, 1: hủy). Không đưa `reservation_status` và `reservation_status_date` vào mô hình vì đây là các trường có nguy cơ rò rỉ thông tin sau thời điểm đặt phòng; danh sách cột cuối cùng sẽ được nhóm chốt tại M1.
 
-## 5. Cấu trúc
+## 5. Chạy các notebook
+
+Sau khi hoàn thành các bước cài đặt môi trường và chuẩn bị dữ liệu ở các mục phía trên, thực hiện chạy các Notebook theo thứ tự:
+Thứ tự	Notebook	Nội dung
+1	01_eda.ipynb	Khám phá dữ liệu (EDA), phân tích phân bố và xu hướng hủy đặt phòng.
+2	02_features.ipynb	Phân tích, xây dựng và kiểm tra các đặc trưng phục vụ mô hình.
+3	03_baseline.ipynb	Xây dựng mô hình baseline với Dummy Classifier và Logistic Regression, thực hiện cross-validation và đánh giá trên tập validation.
+
+Cách chạy
+1. Mở thư mục dự án bằng VS Code.
+2. Mở Notebook tương ứng trong thư mục notebooks/.
+3. Chọn Python Kernel là môi trường .venv đã tạo ở phần cài đặt.
+4. Chọn Run All để thực thi toàn bộ Notebook.
+5. Kiểm tra kết quả hiển thị trong các cell và các file đầu ra tương ứng.
+Kết quả đầu ra
+- Hình ảnh và biểu đồ phân tích được lưu trong reports/figures/.
+- Kết quả đánh giá mô hình được ghi vào reports/results/results.csv.
+- Notebook 03_baseline.ipynb tạo kết quả ban đầu cho Dummy Classifier và Logistic Regression, làm cơ sở để phát triển và so sánh với các mô hình tiếp theo.
+
+## 6. Cấu trúc
 
 ```text
 .
@@ -70,7 +89,7 @@ Mục tiêu là `is_canceled` (0: không hủy, 1: hủy). Không đưa `reserva
 └── requirements.txt
 ```
 
-## 6. Quy ước làm việc nhóm
+## 7. Quy ước làm việc nhóm
 - Seed dùng chung: `RANDOM_STATE = 42` trong `src/config.py`.
 - Mỗi thành viên làm trên nhánh riêng; chỉ merge sau review.
 - Commit theo Conventional Commits: `feat:`, `fix:`, `docs:`, `test:`, ...
@@ -78,5 +97,5 @@ Mục tiêu là `is_canceled` (0: không hủy, 1: hủy). Không đưa `reserva
 - Không commit `.venv/`, cache, dữ liệu tải về hoặc mô hình lớn.
 - Các hàm chia dữ liệu và đánh giá phải dùng chung từ `src/split.py` và `src/evaluate.py`, không tự viết lại ở từng notebook.
 
-## 7. Function contract
+## 8. Function contract
 Các chữ ký hàm được thống nhất trong `docs/function_contracts.md`. Khi thay đổi chữ ký, cần báo cả nhóm và cập nhật tài liệu trước khi các nhánh phụ thuộc triển khai.
