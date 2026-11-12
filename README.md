@@ -48,21 +48,26 @@ Mục tiêu là `is_canceled` (0: không hủy, 1: hủy). Không đưa `reserva
 ## 5. Chạy các notebook
 
 Sau khi hoàn thành các bước cài đặt môi trường và chuẩn bị dữ liệu ở các mục phía trên, thực hiện chạy các Notebook theo thứ tự:
-Thứ tự	Notebook	Nội dung
-1	01_eda.ipynb	Khám phá dữ liệu (EDA), phân tích phân bố và xu hướng hủy đặt phòng.
-2	02_features.ipynb	Phân tích, xây dựng và kiểm tra các đặc trưng phục vụ mô hình.
-3	03_baseline.ipynb	Xây dựng mô hình baseline với Dummy Classifier và Logistic Regression, thực hiện cross-validation và đánh giá trên tập validation.
 
-Cách chạy
+| Thứ tự | Notebook | Nội dung |
+|---|---|---|
+| 1 | `01_eda.ipynb` | Khám phá dữ liệu (EDA), phân tích phân bố và xu hướng hủy đặt phòng. |
+| 2 | `02_features.ipynb` | Phân tích, xây dựng và kiểm tra các đặc trưng phục vụ mô hình. |
+| 3 | `03_baseline.ipynb` | Xây dựng mô hình baseline với Dummy Classifier và Logistic Regression, thực hiện cross-validation và đánh giá trên tập validation. |
+
+**Cách chạy**
+
 1. Mở thư mục dự án bằng VS Code.
-2. Mở Notebook tương ứng trong thư mục notebooks/.
-3. Chọn Python Kernel là môi trường .venv đã tạo ở phần cài đặt.
+2. Mở Notebook tương ứng trong thư mục `notebooks/`.
+3. Chọn Python Kernel là môi trường `.venv` đã tạo ở phần cài đặt.
 4. Chọn Run All để thực thi toàn bộ Notebook.
 5. Kiểm tra kết quả hiển thị trong các cell và các file đầu ra tương ứng.
-Kết quả đầu ra
-- Hình ảnh và biểu đồ phân tích được lưu trong reports/figures/.
-- Kết quả đánh giá mô hình được ghi vào reports/results/results.csv.
-- Notebook 03_baseline.ipynb tạo kết quả ban đầu cho Dummy Classifier và Logistic Regression, làm cơ sở để phát triển và so sánh với các mô hình tiếp theo.
+
+**Kết quả đầu ra**
+
+- Hình ảnh và biểu đồ phân tích được lưu trong `reports/figures/`.
+- Kết quả đánh giá mô hình được ghi vào `reports/results/results.csv`.
+- Notebook `03_baseline.ipynb` tạo kết quả ban đầu cho Dummy Classifier và Logistic Regression, làm cơ sở để phát triển và so sánh với các mô hình tiếp theo.
 
 Notebook `04_gradient_boosting.ipynb` tối ưu LightGBM (Gradient Boosting), lưu siêu tham số tốt nhất tại `models/gradient_boosting_best_params.json`, cập nhật CV và validation vào `reports/results/results.csv`, đồng thời tạo confusion matrix và feature importance trong `reports/figures/`.
 
