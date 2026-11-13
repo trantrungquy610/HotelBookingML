@@ -57,6 +57,7 @@ Sau khi hoàn thành các bước cài đặt môi trường và chuẩn bị d�
 | 4 | `04_gradient_boosting.ipynb` | Tinh chỉnh Gradient Boosting (LightGBM) bằng cross-validation theo thời gian và đánh giá trên tập validation. |
 | 5 | `05_random_forest.ipynb` | Tinh chỉnh Random Forest bằng cross-validation theo thời gian, đánh giá trên tập validation, confusion matrix và mức độ quan trọng của đặc trưng. |
 | 6 | `06_logistic_regression_tuning.ipynb` | Tinh chỉnh Logistic Regression bằng cross-validation theo thời gian, đánh giá trên validation, confusion matrix và permutation importance. |
+| 7 | `07_tn1_leakage_split.ipynb` | Thí nghiệm TN1: so sánh feature set conventional/clean và cách chia random/temporal với ba mô hình tốt nhất. |
 
 **Cách chạy**
 
