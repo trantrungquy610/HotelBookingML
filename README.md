@@ -54,6 +54,8 @@ Sau khi hoàn thành các bước cài đặt môi trường và chuẩn bị d�
 | 1 | `01_eda.ipynb` | Khám phá dữ liệu (EDA), phân tích phân bố và xu hướng hủy đặt phòng. |
 | 2 | `02_features.ipynb` | Phân tích, xây dựng và kiểm tra các đặc trưng phục vụ mô hình. |
 | 3 | `03_baseline.ipynb` | Xây dựng mô hình baseline với Dummy Classifier và Logistic Regression, thực hiện cross-validation và đánh giá trên tập validation. |
+| 4 | `04_gradient_boosting.ipynb` | Tinh chỉnh Gradient Boosting (LightGBM) bằng cross-validation theo thời gian và đánh giá trên tập validation. |
+| 5 | `05_random_forest.ipynb` | Tinh chỉnh Random Forest bằng cross-validation theo thời gian, đánh giá trên tập validation, confusion matrix và mức độ quan trọng của đặc trưng. |
 
 **Cách chạy**
 
