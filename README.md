@@ -56,6 +56,7 @@ Sau khi hoàn thành các bước cài đặt môi trường và chuẩn bị d�
 | 3 | `03_baseline.ipynb` | Xây dựng mô hình baseline với Dummy Classifier và Logistic Regression, thực hiện cross-validation và đánh giá trên tập validation. |
 | 4 | `04_gradient_boosting.ipynb` | Tinh chỉnh Gradient Boosting (LightGBM) bằng cross-validation theo thời gian và đánh giá trên tập validation. |
 | 5 | `05_random_forest.ipynb` | Tinh chỉnh Random Forest bằng cross-validation theo thời gian, đánh giá trên tập validation, confusion matrix và mức độ quan trọng của đặc trưng. |
+| 6 | `06_logistic_regression_tuning.ipynb` | Tinh chỉnh Logistic Regression bằng cross-validation theo thời gian, đánh giá trên validation, confusion matrix và permutation importance. |
 
 **Cách chạy**
 
