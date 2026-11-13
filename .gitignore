@@ -18,11 +18,13 @@ data/processed/*
 models/*
 !models/.gitkeep
 !models/gradient_boosting_best_params.json
+!models/random_forest_best_params.json
 
 # Generated reports
 reports/figures/*
 !reports/figures/.gitkeep
 !reports/figures/gradient_boosting_*.png
+!reports/figures/random_forest_*.png
 reports/results/*
 !reports/results/.gitkeep
 !reports/results/results.csv
