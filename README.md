@@ -58,6 +58,7 @@ Sau khi hoàn thành các bước cài đặt môi trường và chuẩn bị d�
 | 5 | `05_random_forest.ipynb` | Tinh chỉnh Random Forest bằng cross-validation theo thời gian, đánh giá trên tập validation, confusion matrix và mức độ quan trọng của đặc trưng. |
 | 6 | `06_logistic_regression_tuning.ipynb` | Tinh chỉnh Logistic Regression bằng cross-validation theo thời gian, đánh giá trên validation, confusion matrix và permutation importance. |
 | 7 | `07_tn1_leakage_split.ipynb` | Thí nghiệm TN1: so sánh feature set conventional/clean và cách chia random/temporal với ba mô hình tốt nhất. |
+| 8 | `08_tn2_hotel_transfer.ipynb` | Thí nghiệm TN2: train trên một khách sạn, đánh giá trên test của chính khách sạn đó và của khách sạn còn lại (City ↔ Resort) với ba mô hình; kiểm soát cỡ dữ liệu và phân tích nguyên nhân. |
 
 **Cách chạy**
 

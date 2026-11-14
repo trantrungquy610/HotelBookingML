@@ -29,11 +29,13 @@ reports/figures/*
 !reports/figures/random_forest_*.png
 !reports/figures/logistic_regression_*.png
 !reports/figures/tn1_*.png
+!reports/figures/tn2_*.png
 
 reports/results/*
 !reports/results/.gitkeep
 !reports/results/results.csv
 !reports/results/tn1_*.csv
+!reports/results/tn2_*.csv
 
 # OS / IDE
 .DS_Store
