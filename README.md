@@ -59,6 +59,8 @@ Sau khi hoàn thành các bước cài đặt môi trường và chuẩn bị d�
 | 6 | `06_logistic_regression_tuning.ipynb` | Tinh chỉnh Logistic Regression bằng cross-validation theo thời gian, đánh giá trên validation, confusion matrix và permutation importance. |
 | 7 | `07_tn1_leakage_split.ipynb` | Thí nghiệm TN1: so sánh feature set conventional/clean và cách chia random/temporal với ba mô hình tốt nhất. |
 | 8 | `08_tn2_hotel_transfer.ipynb` | Thí nghiệm TN2: train trên một khách sạn, đánh giá trên test của chính khách sạn đó và của khách sạn còn lại (City ↔ Resort) với ba mô hình; kiểm soát cỡ dữ liệu và phân tích nguyên nhân. |
+| 9 | `09_tn3_cost_threshold.ipynb` | TN3: chọn threshold làm nhỏ nhất chi phí kỳ vọng trên validation; lưu threshold đã khóa và hình chi phí theo threshold. |
+| 10 | `10_final_test_evaluation.ipynb` | Đánh giá cuối một lần trên test với threshold mặc định 0,5 và threshold theo chi phí đã khóa ở T15. |
 
 **Cách chạy**
 
@@ -73,6 +75,13 @@ Sau khi hoàn thành các bước cài đặt môi trường và chuẩn bị d�
 - Hình ảnh và biểu đồ phân tích được lưu trong `reports/figures/`.
 - Kết quả đánh giá mô hình được ghi vào `reports/results/results.csv`.
 - Notebook `03_baseline.ipynb` tạo kết quả ban đầu cho Dummy Classifier và Logistic Regression, làm cơ sở để phát triển và so sánh với các mô hình tiếp theo.
+- Notebook `09_tn3_cost_threshold.ipynb` tạo `models/cost_thresholds.json`,
+  thêm các dòng TN3 vào `reports/results/results.csv` và lưu
+  `reports/figures/tn3_cost_by_threshold.png`.
+- Notebook `10_final_test_evaluation.ipynb` tạo
+  `reports/results/final_test.csv` và
+  `reports/figures/final_test_confusion_matrices.png`. Notebook này phải chạy
+  sau T15 và không dùng test để chọn threshold.
 
 Notebook `04_gradient_boosting.ipynb` tối ưu LightGBM (Gradient Boosting), lưu siêu tham số tốt nhất tại `models/gradient_boosting_best_params.json`, cập nhật CV và validation vào `reports/results/results.csv`, đồng thời tạo confusion matrix và feature importance trong `reports/figures/`.
 
