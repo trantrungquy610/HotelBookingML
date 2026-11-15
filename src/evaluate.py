@@ -3,6 +3,7 @@
 from pathlib import Path
 
 import pandas as pd
+import numpy as np
 from sklearn.base import clone
 from sklearn.metrics import (
     average_precision_score,
@@ -14,6 +15,11 @@ from sklearn.metrics import (
     roc_auc_score,
 )
 from sklearn.model_selection import TimeSeriesSplit
+
+
+DEFAULT_COST_THRESHOLDS = tuple(
+    float(value) for value in np.arange(0.01, 1.0, 0.01)
+)
 
 
 # Schema agreed at M1 (docs/decisions.md, section 6).
@@ -75,6 +81,49 @@ def evaluate_classification(
         "FN": float(fn),
         "TP": float(tp),
     }
+
+
+def select_cost_threshold(
+    y_true,
+    y_score,
+    *,
+    c_fn: float,
+    c_fp: float,
+    thresholds=DEFAULT_COST_THRESHOLDS,
+) -> dict[str, float]:
+    """Chọn threshold có expected cost nhỏ nhất trên một tập đã chỉ định.
+
+    Khi chi phí hòa nhau, ưu tiên threshold có precision cao hơn. ``y_score``
+    phải là xác suất/điểm của lớp dương; tập test không được truyền vào đây.
+    """
+    if c_fn < 0 or c_fp < 0 or (c_fn == 0 and c_fp == 0):
+        raise ValueError("At least one cost must be positive.")
+
+    candidates = []
+    for threshold in thresholds:
+        threshold = float(threshold)
+        if not 0 < threshold < 1:
+            raise ValueError("Thresholds must be strictly between 0 and 1.")
+        y_pred = (y_score >= threshold).astype(int)
+        metrics = evaluate_classification(y_true, y_pred, y_score)
+        expected = c_fn * metrics["FN"] + c_fp * metrics["FP"]
+        candidates.append(
+            {
+                **metrics,
+                "threshold": threshold,
+                "expected_cost": float(expected),
+                "cost_per_booking": float(expected / len(y_true)),
+            }
+        )
+
+    return min(
+        candidates,
+        key=lambda row: (
+            row["expected_cost"],
+            -row["precision"],
+            row["threshold"],
+        ),
+    )
 
 
 def time_series_cv(
