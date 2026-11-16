@@ -1,0 +1,35 @@
+{
+  "cost_scenarios": {
+    "balanced": [
+      1.0,
+      1.0
+    ],
+    "fill_rooms": [
+      2.0,
+      1.0
+    ],
+    "cautious_overbooking": [
+      1.0,
+      2.0
+    ]
+  },
+  "primary_scenario": "cautious_overbooking",
+  "thresholds": {
+    "LogisticRegressionTuned": {
+      "balanced": 0.52,
+      "fill_rooms": 0.33,
+      "cautious_overbooking": 0.67
+    },
+    "RandomForest": {
+      "balanced": 0.45,
+      "fill_rooms": 0.37,
+      "cautious_overbooking": 0.67
+    },
+    "GradientBoosting": {
+      "balanced": 0.46,
+      "fill_rooms": 0.2,
+      "cautious_overbooking": 0.74
+    }
+  },
+  "selection_set": "validation"
+}

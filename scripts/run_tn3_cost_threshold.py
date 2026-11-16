@@ -39,7 +39,9 @@ SCENARIOS = {
 
 def main() -> None:
     df = add_features(clean_data(load_raw()))
-    _train, valid, _test = temporal_split(
+    # Use the sorted train split, as in T16: RandomForest bootstraps by row
+    # position, so a differently ordered train set gives a different forest
+    train, valid, _test = temporal_split(
         df, train_end="2017-01-01", valid_end="2017-07-01",
         date_col="arrival_date",
     )
@@ -52,9 +54,8 @@ def main() -> None:
     for model_name in MODEL_NAMES:
         features = feature_columns(feature_set)
         pipeline = make_pipeline(
-            model_name, feature_set, valid[features], params[model_name]
+            model_name, feature_set, train[features], params[model_name]
         )
-        train = df.loc[df["arrival_date"] < pd.Timestamp("2017-01-01")]
         pipeline.fit(train[features], train[TARGET_COLUMN])
         y_score = pipeline.predict_proba(valid[features])[:, 1]
 
