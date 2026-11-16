@@ -21,6 +21,7 @@ models/*
 !models/gradient_boosting_best_params.json
 !models/random_forest_best_params.json
 !models/logistic_regression_best_params.json
+!models/cost_thresholds.json
 
 # Generated reports
 reports/figures/*
@@ -30,12 +31,15 @@ reports/figures/*
 !reports/figures/logistic_regression_*.png
 !reports/figures/tn1_*.png
 !reports/figures/tn2_*.png
+!reports/figures/tn3_*.png
+!reports/figures/final_test_*.png
 
 reports/results/*
 !reports/results/.gitkeep
 !reports/results/results.csv
 !reports/results/tn1_*.csv
 !reports/results/tn2_*.csv
+!reports/results/final_test.csv
 
 # OS / IDE
 .DS_Store
